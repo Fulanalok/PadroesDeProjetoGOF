@@ -3,16 +3,14 @@ public class PersonagemBuilder {
     private int resistencia;
     private int vida;
     private int mana;
-    private int arma;
-    private int poder;
+    private String arma;
+    private String poder;
 
     public PersonagemBuilder() {
         this.dano = 0;
         this.resistencia = 0;
         this.vida = 0;
         this.mana = 0;
-        this.arma = 0;
-        this.poder = 0;
     }
 
     public PersonagemBuilder setDano(int dano) {
@@ -35,12 +33,12 @@ public class PersonagemBuilder {
         return this;
     }
 
-    public PersonagemBuilder setArma(int arma) {
+    public PersonagemBuilder setArma(String arma) {
         this.arma = arma;
         return this;
     }
 
-    public PersonagemBuilder setPoder(int poder) {
+    public PersonagemBuilder setPoder(String poder) {
         this.poder = poder;
         return this;
     }
