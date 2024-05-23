@@ -3,10 +3,10 @@ public class Personagem {
     private final int resistencia;
     private final int vida;
     private final int mana;
-    private final int arma;
-    private final int poder;
+    private final String arma;
+    private final String poder;
 
-    public Personagem(int dano, int resistencia, int vida, int mana, int arma, int poder) {
+    public Personagem(int dano, int resistencia, int vida, int mana, String arma, String poder) {
         this.dano = dano;
         this.resistencia = resistencia;
         this.vida = vida;
@@ -31,11 +31,11 @@ public class Personagem {
         return mana;
     }
 
-    public int getArma() {
+    public String getArma() {
         return arma;
     }
 
-    public int getPoder() {
+    public String getPoder() {
         return poder;
     }
 }
