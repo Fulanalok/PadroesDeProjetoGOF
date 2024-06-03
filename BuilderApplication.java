@@ -327,22 +327,26 @@ public class BuilderApplication {
         // Simulação de combate
         System.out.println("\n--- Começando o combate ---\n");
         while (lutadora.getVida()  > 0 && guerreiro.getVida() > 0 && arqueira.getVida() > 0 && druida.getVida() > 0 && feiticeira.getVida() > 0 && vilao.getVida() > 0) {
-            // Personagens ataca o Vilão
+            // Personagens atacam o Vilão
             lutadora.ataqueLutadora(vilao);
             guerreiro.ataqueGuerreiro(vilao);
             arqueira.ataqueArqueiro(vilao);
             druida.ataqueDruida(vilao);
             feiticeira.ataqueFeiticeira(vilao);
 
-            // Vilão ataca a Lutadora
+            // Vilão ataca os personagens
             if (vilao.getVida() > 0) {
                 vilao.ataqueVilao(lutadora);
+                vilao.ataqueVilao(guerreiro);
+                vilao.ataqueVilao(arqueira);
+                vilao.ataqueVilao(druida);
+                vilao.ataqueVilao(feiticeira);
             }
         }
         System.out.println("------------------------------------------------------" +"\n");
 
         // Verificando o vencedor
-        if (lutadora.getVida() <= 0) {
+        if (!(lutadora.getVida() > 0) && guerreiro.getVida() <= 0 && arqueira.getVida() <= 0 && druida.getVida() <= 0 && feiticeira.getVida() <= 0) {
             System.out.println("\n O Vilão venceu!");
         } else {
             System.out.println(" \n Os personagens venceram!");
