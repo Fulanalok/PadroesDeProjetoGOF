@@ -10,7 +10,7 @@ public class Personagem {
     private int vida;
     private final int mana;
     private final String arma;
-    private String poder = "Foice em Chamas";
+    private String poder;
 
 
     public Personagem(int dano, int resistencia, int vida, int mana, String arma) {
@@ -57,11 +57,11 @@ public class Personagem {
         personagem.receberDano(dano);
     }
     public void ataqueDruida(Personagem personagem) {
-        System.out.println(PersonagemEnuns.DRUIDA + " atacou com " + arma + " causando " + dano + " de dano!");
+        System.out.println(PersonagemEnuns.DRUIDA + " atacou causando " + dano + " de dano!");
         personagem.receberDano(dano);
     }
     public void ataqueFeiticeira(Personagem personagem) {
-        System.out.println(PersonagemEnuns.FEITICEIRA + " atacou com " + arma + " causando " + dano + " de dano!");
+        System.out.println(PersonagemEnuns.FEITICEIRA + " atacou causando " + dano + " de dano!");
         personagem.receberDano(dano);
     }
     public void ataqueVilao(Personagem personagem) {
