@@ -1,3 +1,7 @@
+package PersonagemBuilder;
+
+import Personagem.Personagem;
+
 public class PersonagemBuilder {
     private int dano;
     private int resistencia;
@@ -5,6 +9,7 @@ public class PersonagemBuilder {
     private int mana;
     private String arma;
     private String poder;
+
 
     public PersonagemBuilder() {
         this.dano = 0;
@@ -44,7 +49,7 @@ public class PersonagemBuilder {
     }
 
     public Personagem build() {
-        return new Personagem(dano, resistencia, vida, mana, arma, poder);
+        return new Personagem(dano, resistencia, vida, mana, arma);
     }
 
 }
