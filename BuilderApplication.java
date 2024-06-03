@@ -1,14 +1,19 @@
+import Personagem.Personagem;
+import PersonagemBuilder.PersonagemBuilder;
+import enuns.PersonagemEnuns;
+
 import java.util.Scanner;
 
-public class Main {
+public class BuilderApplication {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Bem-vindo ao nosso jogo! Seu objetivo é vencer o vilão, atribuindo pontos para cada característica dos personagens.\n" +
-                "Regras: 1. A quantidade máxima de pontos atribuídos aos 5 personagens não pode exceder os 500 pontos.\n" +
-                "2. É obrigatória a atribuição de pelo menos 1 (um) ponto por característica a cada personagem.");
+        System.out.println("Bem-vindo ao nosso jogo! " +
+                "Seu objetivo é vencer o vilão, atribuindo pontos para cada característica dos personagens.\n" +
+                "Regras: \n" +
+                "1. É obrigatória a atribuição de pelo menos 1 (um) ponto por característica a cada personagem.\n" +
+                "2. Escolha números entre 500 a 1000 para as características.\n");
 
-        final int MAX_PONTOS = 500;
         //Lutadora
         System.out.println("Criando uma lutadora:\n");
 
@@ -59,7 +64,7 @@ public class Main {
                 .setArma(armaLutadora)
                 .build();
         long TotalLutadora = (danoLutadora + resistenciaLutadora + vidaLutadora);
-        System.out.println("Lutadora criada!\n Quantidade de pontos usados:" + TotalLutadora);
+        System.out.println("Lutadora criada!\n" + "Quantidade de pontos usados:" + TotalLutadora + "\n");
 
 
 
@@ -113,7 +118,7 @@ public class Main {
                 .setArma(armaGuerreiro)
                 .build();
         long TotalGuerreiro = (danoGuerreiro + resistenciaGuerreiro + vidaGuerreiro);
-        System.out.println("Guerreiro criado!\n Quantidade de pontos usados até agora:" + (TotalLutadora+TotalGuerreiro));
+        System.out.println("Guerreiro criado!\n" + "Quantidade de pontos usados:" + (TotalGuerreiro+TotalLutadora) + "\n");
 
 
         //Arqueira
@@ -166,7 +171,7 @@ public class Main {
                 .setArma(armaArqueira)
                 .build();
         long TotalArqueira = (danoArqueira + resistenciaArqueira + vidaArqueira);
-        System.out.println("Arqueira criada!\n Quantidade de pontos usados até agora:" + (TotalLutadora+TotalGuerreiro+TotalArqueira));
+        System.out.println("Arqueira criada!\n" + "Quantidade de pontos usados:" + (TotalArqueira + TotalGuerreiro + TotalLutadora) + "\n");
 
 
         //Druida
@@ -228,7 +233,7 @@ public class Main {
                 .setPoder(poderDruida)
                 .build();
         long TotalDruida = (danoDruida + resistenciaDruida + vidaDruida + manaDruida);
-        System.out.println("Druida criado!\n Quantidade de pontos usados até agora:" + (TotalLutadora+TotalGuerreiro+TotalArqueira+TotalDruida));
+        System.out.println("Druida criado!\n" + "Quantidade de pontos usados:" + (TotalDruida + TotalGuerreiro + TotalArqueira + TotalLutadora) + "\n");
 
 
 
@@ -291,30 +296,56 @@ public class Main {
                 .setMana(manaFeiticeira)
                 .setPoder(poderFeiticeira)
                 .build();
-        System.out.println("Feiticeira criada!\n");
-
         long TotalFeiticeira = (danoFeiticeira + resistenciaFeiticeira + vidaFeiticeira + manaFeiticeira);
+        System.out.println("Feiticeira criado!\n" + "Quantidade de pontos usados:" + (TotalFeiticeira + TotalDruida + TotalArqueira + TotalGuerreiro + TotalLutadora) + "\n");
+        System.out.println("------------------------------------------------------");
 
         //Quantidade de pontos da equipe por caracteristica e geral para fazer a conta
         long statsDano = (danoLutadora + danoGuerreiro + danoArqueira + danoDruida + danoFeiticeira);
+        System.out.println("A quantidade de Dano da equipe:" + statsDano);
 
         long statsResistencia = (resistenciaLutadora + resistenciaGuerreiro + resistenciaArqueira + resistenciaDruida + resistenciaFeiticeira);
+        System.out.println("A quantidade de Resistência da equipe:" + statsResistencia);
 
         long statsVida = (vidaLutadora + vidaGuerreiro + vidaArqueira + vidaDruida + vidaFeiticeira);
+        System.out.println("A quantidade de Vida da equipe:" + statsVida);
 
         long statsMana = (manaDruida + manaFeiticeira);
+        System.out.println("A quantidade de Mana da Equipe:" + statsMana + "\n");
         //Poder e arma não contam, pq eles dão boost pras outras características
 
         long statsEquipe = (TotalLutadora + TotalGuerreiro + TotalArqueira + TotalDruida + TotalFeiticeira);
+        System.out.println("A pontuação total da Equipe foi:" + statsEquipe);
+        System.out.println("------------------------------------------------------" +"\n");
 
-        if (statsEquipe > MAX_PONTOS) {
-            System.out.println("A pontuação total da equipe excedeu o limite de pontos.\n" + "Reduza os pontos atribuídos aos personagens."
-            );
-        }
-        else {
-            System.out.println("A pontuação atingida pela equipe foi: " + statsEquipe);
-        }
 
-        //Adicionar a parte do vilão
+        //Construção do vilão
+        Personagem vilao = new Personagem(3400, 5000, 3400, 5000, "foice em chamas");
+        System.out.println("Voces terão que enfrentar o Vilão, com um poder total de: 20000 pontos");
+
+
+        // Simulação de combate
+        System.out.println("\n--- Começando o combate ---\n");
+        while (lutadora.getVida()  > 0 && guerreiro.getVida() > 0 && arqueira.getVida() > 0 && druida.getVida() > 0 && feiticeira.getVida() > 0 && vilao.getVida() > 0) {
+            // Personagens ataca o Vilão
+            lutadora.ataqueLutadora(vilao);
+            guerreiro.ataqueGuerreiro(vilao);
+            arqueira.ataqueArqueiro(vilao);
+            druida.ataqueDruida(vilao);
+            feiticeira.ataqueFeiticeira(vilao);
+
+            // Vilão ataca a Lutadora
+            if (vilao.getVida() > 0) {
+                vilao.ataqueVilao(lutadora);
+            }
+        }
+        System.out.println("------------------------------------------------------" +"\n");
+
+        // Verificando o vencedor
+        if (lutadora.getVida() <= 0) {
+            System.out.println("\n O Vilão venceu!");
+        } else {
+            System.out.println(" \n Os personagens venceram!");
+        }
     }
 }
